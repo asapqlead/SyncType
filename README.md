@@ -26,10 +26,10 @@ synctype-integrated/
 ├── frontend/
 │   ├── src/
 │   │   ├── main.jsx
-│   │   ├── App.jsx              ← New beautiful UI
+│   │   ├── App.jsx              ← UI
 │   │   └── index.css
 │   ├── public/
-│   │   └── mylogo.svg           ← Your logo
+│   │   └── mylogo.svg           ← Logo
 │   ├── index.html
 │   ├── package.json
 │   ├── vite.config.js
