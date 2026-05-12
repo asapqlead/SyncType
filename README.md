@@ -23,18 +23,22 @@ synctype-integrated/
 │   ├── requirements.txt
 │   ├── synctype-final/          ← MarianMT model weights
 │   └── combined_dataset_v2.csv  ← Dictionary CSV
-└── frontend/
-    ├── src/
-    │   ├── main.jsx
-    │   ├── App.jsx              ← New beautiful UI
-    │   └── index.css
-    ├── public/
-    │   └── mylogo.svg           ← Your logo
-    ├── index.html
-    ├── package.json
-    ├── vite.config.js
-    ├── tailwind.config.js
-    └── postcss.config.js
+├── frontend/
+│   ├── src/
+│   │   ├── main.jsx
+│   │   ├── App.jsx              ← New beautiful UI
+│   │   └── index.css
+│   ├── public/
+│   │   └── mylogo.svg           ← Your logo
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   └── postcss.config.js
+└── training_model/              ← Model training & fine-tuning
+    ├── train.py
+    ├── preprocessing.py
+    └── datasets/
 ```
 
 ---
@@ -184,6 +188,46 @@ Open **http://localhost:5173** in your browser.
 
 ---
 
+## 🤖 Model Training
+
+### Training the Model
+
+The `training_model/` directory contains scripts and utilities for training/fine-tuning the MarianMT model:
+
+```bash
+cd training_model
+
+# Install training dependencies
+pip install -r requirements.txt
+
+# Preprocess your dataset
+python preprocessing.py --input data.csv --output processed_data.pkl
+
+# Train the model
+python train.py --dataset processed_data.pkl --epochs 10 --output ../backend/synctype-final/
+```
+
+### Dataset Format
+Prepare your training data as CSV with columns:
+- `roman` - Romanized Khmer text
+- `khmer` - Khmer script text
+
+Example:
+```csv
+roman,khmer
+som sok sabay,សុំសុខសប្បាយ
+hello,សួស្តី
+```
+
+### Training Parameters
+- **Model**: MarianMT base model
+- **Batch size**: 32
+- **Learning rate**: 3e-5
+- **Epochs**: Configurable (default: 10)
+- **Device**: Auto-detects GPU/CPU
+
+---
+
 ## 📝 Usage Examples
 
 ### Example 1: Simple Translation
@@ -255,6 +299,12 @@ Serve the `dist` folder with any static file server.
 1. Check that `/api/suggest` endpoint is responding
 2. Verify dictionary CSV is loaded properly
 3. Check browser network tab for request/response
+
+### Model training failed
+1. Check GPU availability: `nvidia-smi`
+2. Verify training dataset format (CSV with `roman` and `khmer` columns)
+3. Ensure sufficient disk space for checkpoints
+4. Check training_model/logs/ for detailed error messages
 
 ---
 
