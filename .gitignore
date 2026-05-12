@@ -1,0 +1,42 @@
+# Python - Virtual Environments
+.venv/
+venv/
+env/
+backend/venv/
+backend/.venv/
+
+# Backend - Python
+backend/__pycache__/
+backend/*.py[cod]
+backend/*.so
+backend/.Python
+backend/*.egg-info/
+backend/dist/
+backend/build/
+backend/.env
+backend/.env.local
+
+# Backend - Model files (if generated/downloaded)
+backend/*.safetensors
+backend/synctype-final/model.safetensors
+
+# Frontend - Node
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env.local
+frontend/.env*.local
+
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+*~
+.idea/
+.vscode/settings.json
+.vscode/launch.json
+
+# OS
+.env
