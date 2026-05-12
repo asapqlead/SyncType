@@ -9,7 +9,7 @@ import os
 app = FastAPI(title="Synctype Khmer Translator API", version="1.0.0")
 
 # ------------------------------------
-# CORS — allow your React dev server
+# CORS — allow production URLs
 # ------------------------------------
 app.add_middleware(
     CORSMiddleware,
@@ -18,6 +18,8 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "http://localhost:3000",   # Alternative port
         "http://127.0.0.1:3000",
+        "https://*.vercel.app",    # Allow any Vercel deployment
+        os.getenv("FRONTEND_URL", ""),  # Environment variable for custom URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
