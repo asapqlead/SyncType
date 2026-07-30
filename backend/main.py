@@ -18,9 +18,9 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "http://localhost:3000",   # Alternative port
         "http://127.0.0.1:3000",
-        "https://*.vercel.app",    # Allow any Vercel deployment
         os.getenv("FRONTEND_URL", ""),  # Environment variable for custom URL
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",  # Allow any Vercel deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
