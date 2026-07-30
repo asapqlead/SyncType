@@ -65,8 +65,8 @@ def load_lookup():
 @app.on_event("startup")
 async def startup_event():
     load_lookup()
-    if os.path.exists(MODEL_PATH):
-        load_model()
+    # Model loads lazily on first request via load_model()
+    # This ensures the port opens quickly for Render's health check
 
 # ------------------------------------
 # Preprocessing
